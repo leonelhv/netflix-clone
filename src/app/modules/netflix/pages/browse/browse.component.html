@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div
+  class="flex flex-col w-full min-h-[85vh] relative bg-black/30 bg-blend-multiply"
+>
+  <img
+    class="absolute top-0 left-0 object-cover w-full h-full -z-10"
+    src="https://image.tmdb.org/t/p/original/faXT8V80JRhnArTAeYXz0Eutpv9.jpg"
+    alt=""
+  />
+  <div class="flex items-center flex-grow w-11/12 h-full mx-auto">
+    <div class="flex flex-col gap-4 text-white w-96">
+      <h2 class="text-6xl font-bold">Title</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, maxime,
+        possimus rerum quod delectus iusto, provident soluta necessitatibus nemo
+        maiores voluptatem illo veritatis ex cupiditate error odio consectetur
+        aliquid. Eligendi!
+      </p>
+      <div class="flex gap-4">
+        <button
+          class="flex items-center gap-2 px-4 py-2 font-semibold text-black bg-white rounded-md"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="icon icon-tabler icon-tabler-player-play"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="#000000"
+            fill="#000"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <path d="M7 4v16l13 -8z" />
+          </svg>
+          Reproducir
+        </button>
+        <button
+          class="px-4 py-2 font-semibold text-white rounded-md bg-white/50"
+        >
+          Más información
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="relative z-20 w-full h-12 -mt-8 fadeBotton"></div>
+<div class="bg-gris">
+  <app-carousel></app-carousel>
+</div>
