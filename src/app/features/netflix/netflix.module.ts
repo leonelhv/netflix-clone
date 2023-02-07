@@ -7,9 +7,28 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { CarouselComponent } from './components/carousel/carousel.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { NetflixComponent } from './netflix.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { RouterOutlet } from '@angular/router';
+import { NetflixService } from './services/netflix.service';
+import { ApikeyInterceptor } from './interceptors/apikey.interceptor';
 @NgModule({
   declarations: [BrowseComponent, CarouselComponent, NetflixComponent],
-  imports: [CommonModule, CarouselModule, NetflixRoutingModule, SharedModule],
+  imports: [
+    CommonModule,
+    RouterOutlet,
+    HttpClientModule,
+    CarouselModule,
+    NetflixRoutingModule,
+    SharedModule,
+  ],
   exports: [NetflixComponent],
+  providers: [
+    NetflixService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ApikeyInterceptor,
+      multi: true,
+    },
+  ],
 })
 export class NetflixModule {}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o/public_api';
 
 @Component({
@@ -7,14 +7,22 @@ import { OwlOptions } from 'ngx-owl-carousel-o/public_api';
   styleUrls: ['./carousel.component.css'],
 })
 export class CarouselComponent {
+  @Input() titleCarousel!: string;
+  @Input() dataCarousel!: any[];
+
   customOptions: OwlOptions = {
     loop: false,
     mouseDrag: true,
-    touchDrag: true,
     pullDrag: false,
     dots: false,
     navSpeed: 700,
     autoHeight: true,
+    lazyLoad: true,
+    lazyLoadEager: 5,
+    stagePadding: 10,
+    margin: 10,
+    center: false,
+
     responsive: {
       0: {
         items: 1,

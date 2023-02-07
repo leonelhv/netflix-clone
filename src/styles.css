@@ -6,3 +6,9 @@
 custom-img .image {
   object-fit: cover;
 }
+
+.owl-item:hover {
+  z-index: 999 !important;
+  scale: 110%;
+  transition: all 0.2s linear;
+}
