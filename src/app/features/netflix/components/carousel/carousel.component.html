@@ -4,17 +4,51 @@
 <div class="h-80 min-w-min">
   <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let item of dataCarousel">
-      <div class="relative my-3 overflow-hidden text-white rounded-xl">
+      <div
+        class="relative my-3 overflow-hidden text-white rounded-lg cursor-pointer"
+      >
         <img
           class="object-cover"
           [src]="'https://image.tmdb.org/t/p/w400' + item.backdrop_path"
           alt=""
         />
         <div
-          class="absolute top-0 bottom-0 left-0 right-0 w-full h-full p-4 text-white bg-black/50"
+          class="absolute top-0 bottom-0 left-0 right-0 w-full h-full p-4 text-white bg-black/60"
         >
-          <div class="flex flex-col justify-center w-full h-full">
-            <span class="font-semibold">{{ item.name }}</span>
+          <div class="flex flex-col justify-center w-full h-full gap-3">
+            <span
+              class="text-lg font-bold drop-shadow-lg line-clamp-1"
+              [title]="item.name"
+              >{{ item.name }}</span
+            >
+            <div class="flex items-center gap-4 text-sm">
+              <span class="font-semibold">{{
+                item.first_air_date.substring(0, 4)
+              }}</span>
+              <span
+                class="flex items-center justify-center gap-1 p-1 text-center border rounded-md bg-black/50"
+                ><span class="text-xs">{{ item.vote_average }}</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="icon icon-tabler icon-tabler-star"
+                  width="11"
+                  height="11"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="#ffec00"
+                  fill="#ffec00"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                  <path
+                    d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                  /></svg
+              ></span>
+            </div>
+            <p class="text-sm line-clamp-2 text-white/70">
+              {{ item.overview }}
+            </p>
           </div>
         </div>
       </div>

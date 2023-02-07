@@ -16,7 +16,6 @@ export class CarouselComponent {
     pullDrag: false,
     dots: false,
     navSpeed: 700,
-    autoHeight: true,
     lazyLoad: true,
     lazyLoadEager: 5,
     stagePadding: 10,
