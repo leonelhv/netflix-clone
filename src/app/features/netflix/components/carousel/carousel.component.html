@@ -1,7 +1,7 @@
 <h2 class="mb-4 text-3xl font-medium text-white/95">
   {{ titleCarousel | uppercase }}
 </h2>
-<div class="h-80 min-w-min">
+<div class="h-48 min-w-min">
   <owl-carousel-o [options]="customOptions">
     <ng-template carouselSlide *ngFor="let item of dataCarousel">
       <div
@@ -9,21 +9,22 @@
       >
         <img
           class="object-cover"
-          [src]="'https://image.tmdb.org/t/p/w400' + item.backdrop_path"
+          [src]="'https://image.tmdb.org/t/p/w300' + item.backdrop_path"
           alt=""
         />
         <div
-          class="absolute top-0 bottom-0 left-0 right-0 w-full h-full p-4 text-white bg-black/60"
+          class="absolute top-0 bottom-0 left-0 right-0 w-full h-full p-4 text-white transition-opacity duration-300 opacity-0 bg-black/60 hover:opacity-100"
         >
           <div class="flex flex-col justify-center w-full h-full gap-3">
             <span
               class="text-lg font-bold drop-shadow-lg line-clamp-1"
-              [title]="item.name"
-              >{{ item.name }}</span
+              [title]="item.name || item.title"
+              >{{ item.name || item.title }}</span
             >
             <div class="flex items-center gap-4 text-sm">
               <span class="font-semibold">{{
-                item.first_air_date.substring(0, 4)
+                (item.first_air_date && item.first_air_date.substring(0, 4)) ||
+                  item.release_date.substring(0, 4)
               }}</span>
               <span
                 class="flex items-center justify-center gap-1 p-1 text-center border rounded-md bg-black/50"

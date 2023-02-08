@@ -11,8 +11,10 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RouterOutlet } from '@angular/router';
 import { NetflixService } from './services/netflix.service';
 import { ApikeyInterceptor } from './interceptors/apikey.interceptor';
+import { VideoHeroComponent } from './components/video-hero/video-hero.component';
+import { GroupCarouselComponent } from './components/group-carousel/group-carousel.component';
 @NgModule({
-  declarations: [BrowseComponent, CarouselComponent, NetflixComponent],
+  declarations: [BrowseComponent, CarouselComponent, NetflixComponent, VideoHeroComponent, GroupCarouselComponent],
   imports: [
     CommonModule,
     RouterOutlet,

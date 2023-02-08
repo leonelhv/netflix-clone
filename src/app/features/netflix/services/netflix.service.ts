@@ -23,4 +23,23 @@ export class NetflixService {
       })
       .pipe(map((result) => result.results));
   }
+
+  getTrendingMovies() {
+    return this.http
+      .get(`${this.BASE_URL}/trending/movie/week`)
+      .pipe(map((result: any) => result.results));
+  }
+
+  getTopRatedMovies() {
+    const params = new HttpParams().set('language', 'en-US').set('page', 1);
+    return this.http
+      .get(`${this.BASE_URL}/movie/top_rated`, { params })
+      .pipe(map((result: any) => result.results));
+  }
+  getActionMovies() {
+    const params = new HttpParams().set('with_genres', 28);
+    return this.http
+      .get(`${this.BASE_URL}/movie/top_rated`, { params })
+      .pipe(map((result: any) => result.results));
+  }
 }
