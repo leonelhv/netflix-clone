@@ -1,5 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  OnInit,
+  ViewChild,
+  ViewEncapsulation,
+} from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { DataMovie } from '../../models/dataMovie';
 import { NetflixService } from '../../services/netflix.service';
 declare var YT: any;
 @Component({
@@ -14,7 +21,7 @@ export class VideoHeroComponent implements OnInit {
   private ytEvent: any;
   isMuted = false;
   endVideo: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  public movieNetflix: any;
+  public movieNetflix!: DataMovie;
 
   constructor(private netflixService: NetflixService) {
     this.netflixService.getRandomMovieNetflixOriginal().subscribe((res) => {
@@ -51,9 +58,7 @@ export class VideoHeroComponent implements OnInit {
         },
         onStateChange: (event: any) => {
           if (event.data === YT.PlayerState.ENDED) {
-            this.player.getIframe().setAttribute('class', 'hidden');
-            this.endVideo.next(true);
-            console.log('The video has ended');
+            this.offVideoMovie();
           }
         },
       },
@@ -64,11 +69,18 @@ export class VideoHeroComponent implements OnInit {
         mute: 1,
       },
     });
+    if (!this.movieNetflix.keyYT) {
+      return this.offVideoMovie();
+    }
     this.player
       .getIframe()
       .setAttribute('class', 'absolute top-0 left-0 w-full h-full');
   }
 
+  offVideoMovie() {
+    this.player.getIframe().setAttribute('class', 'hidden');
+    this.endVideo.next(true);
+  }
   pauseVideo() {
     this.player.pauseVideo();
   }
