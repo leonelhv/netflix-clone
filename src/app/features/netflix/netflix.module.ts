@@ -13,8 +13,9 @@ import { NetflixService } from './services/netflix.service';
 import { ApikeyInterceptor } from './interceptors/apikey.interceptor';
 import { VideoHeroComponent } from './components/video-hero/video-hero.component';
 import { GroupCarouselComponent } from './components/group-carousel/group-carousel.component';
+import { ModalInfoComponent } from './components/modal-info/modal-info.component';
 @NgModule({
-  declarations: [BrowseComponent, CarouselComponent, NetflixComponent, VideoHeroComponent, GroupCarouselComponent],
+  declarations: [BrowseComponent, CarouselComponent, NetflixComponent, VideoHeroComponent, GroupCarouselComponent, ModalInfoComponent],
   imports: [
     CommonModule,
     RouterOutlet,
