@@ -14,8 +14,17 @@ import { ApikeyInterceptor } from './interceptors/apikey.interceptor';
 import { VideoHeroComponent } from './components/video-hero/video-hero.component';
 import { GroupCarouselComponent } from './components/group-carousel/group-carousel.component';
 import { ModalInfoComponent } from './components/modal-info/modal-info.component';
+import { OverlayModule } from '@angular/cdk/overlay';
+import { PortalModule } from '@angular/cdk/portal';
 @NgModule({
-  declarations: [BrowseComponent, CarouselComponent, NetflixComponent, VideoHeroComponent, GroupCarouselComponent, ModalInfoComponent],
+  declarations: [
+    BrowseComponent,
+    CarouselComponent,
+    NetflixComponent,
+    VideoHeroComponent,
+    GroupCarouselComponent,
+    ModalInfoComponent,
+  ],
   imports: [
     CommonModule,
     RouterOutlet,
@@ -23,6 +32,8 @@ import { ModalInfoComponent } from './components/modal-info/modal-info.component
     CarouselModule,
     NetflixRoutingModule,
     SharedModule,
+    OverlayModule,
+    PortalModule,
   ],
   exports: [NetflixComponent],
   providers: [

@@ -8,6 +8,8 @@ import {
 import { BehaviorSubject } from 'rxjs';
 import { DataMovie } from '../../models/dataMovie';
 import { NetflixService } from '../../services/netflix.service';
+import { OverlayService } from '../../services/overlay.service';
+import { ModalInfoComponent } from '../modal-info/modal-info.component';
 declare var YT: any;
 @Component({
   selector: 'app-video-hero',
@@ -23,13 +25,15 @@ export class VideoHeroComponent implements OnInit {
   endVideo: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public movieNetflix!: DataMovie;
 
-  constructor(private netflixService: NetflixService) {
+  constructor(
+    private netflixService: NetflixService,
+    private overlayService: OverlayService
+  ) {
     this.netflixService.getRandomMovieNetflixOriginal().subscribe((res) => {
       console.log(res);
       this.movieNetflix = res;
     });
   }
-
   ngOnInit() {
     this.loadScript();
   }
@@ -96,5 +100,9 @@ export class VideoHeroComponent implements OnInit {
   toggleMute() {
     this.isMuted = !this.isMuted;
     this.isMuted ? this.unMuteVideo() : this.muteVideo();
+  }
+
+  openModal(data: DataMovie) {
+    this.overlayService.open(ModalInfoComponent, { ...data });
   }
 }

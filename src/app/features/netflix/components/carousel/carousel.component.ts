@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o/public_api';
 import { DataMovie } from '../../models/dataMovie';
+import { OverlayService } from '../../services/overlay.service';
+import { ModalInfoComponent } from '../modal-info/modal-info.component';
 
 @Component({
   selector: 'app-carousel',
@@ -10,6 +12,9 @@ import { DataMovie } from '../../models/dataMovie';
 export class CarouselComponent {
   @Input() titleCarousel!: string;
   @Input() dataCarousel!: DataMovie[];
+  isDragging = false;
+
+  constructor(private overlayService: OverlayService) {}
 
   customOptions: OwlOptions = {
     loop: false,
@@ -38,4 +43,15 @@ export class CarouselComponent {
       },
     },
   };
+  showModal(item: DataMovie) {
+    if (!this.isDragging) {
+      this.overlayService.open(ModalInfoComponent, { ...item });
+    }
+  }
+  disableModal() {
+    this.isDragging = true;
+  }
+  enableModal() {
+    this.isDragging = false;
+  }
 }

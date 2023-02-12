@@ -2,9 +2,14 @@
   {{ titleCarousel | uppercase }}
 </h2>
 <div class="h-48 min-w-min">
-  <owl-carousel-o [options]="customOptions">
+  <owl-carousel-o
+    [options]="customOptions"
+    (dragging)="disableModal()"
+    (translated)="enableModal()"
+  >
     <ng-template carouselSlide *ngFor="let item of dataCarousel">
       <div
+        (click)="showModal(item)"
         class="relative my-3 overflow-hidden text-white rounded-lg cursor-pointer"
       >
         <img

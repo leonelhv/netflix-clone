@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@angular/cdk/overlay-prebuilt.css";
 
 /* override styles carousel */
 custom-img .image {
@@ -11,4 +12,24 @@ custom-img .image {
   z-index: 999 !important;
   scale: 110%;
   transition: all 0.2s linear;
+}
+
+/* overlay */
+.overlay-panel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin: 0 30px;
+  max-width: 900px;
+  border-radius: 7px;
+  overflow: hidden;
+  min-height: min-content;
+}
+.overlay-panel > * {
+  width: inherit;
+  height: inherit;
+  /* overflow-y: scroll; */
+}
+.backdrop-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
 }

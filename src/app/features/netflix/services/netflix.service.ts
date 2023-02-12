@@ -85,4 +85,8 @@ export class NetflixService {
       })
     );
   }
+
+  getInfoMovie(id: number) {
+    return this.http.get(`${this.BASE_URL}/tv/${id}?language=en-US`);
+  }
 }
