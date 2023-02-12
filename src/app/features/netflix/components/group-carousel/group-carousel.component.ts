@@ -29,6 +29,7 @@ export class GroupCarouselComponent {
         this.trendingMovies = trendingMoviesResult;
         this.topRatedMovies = topRatedMoviesResult;
         this.actionMovies = actionMoviesResult;
+        this.netflixService.idsNetflixOriginals.next(netflixOriginalsResult);
       }
     );
   }
