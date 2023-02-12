@@ -18,13 +18,12 @@
           <div class="flex flex-col justify-center w-full h-full gap-3">
             <span
               class="text-lg font-bold drop-shadow-lg line-clamp-1"
-              [title]="item.name || item.title"
-              >{{ item.name || item.title }}</span
+              [title]="item.title"
+              >{{ item.title }}</span
             >
             <div class="flex items-center gap-4 text-sm">
               <span class="font-semibold">{{
-                (item.first_air_date && item.first_air_date.substring(0, 4)) ||
-                  item.release_date.substring(0, 4)
+                item.first_air_date && item.first_air_date.substring(0, 4)
               }}</span>
               <span
                 class="flex items-center justify-center gap-1 p-1 text-center border rounded-md bg-black/50"

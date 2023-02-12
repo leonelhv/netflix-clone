@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OwlOptions } from 'ngx-owl-carousel-o/public_api';
+import { DataMovie } from '../../models/dataMovie';
 
 @Component({
   selector: 'app-carousel',
@@ -8,7 +9,7 @@ import { OwlOptions } from 'ngx-owl-carousel-o/public_api';
 })
 export class CarouselComponent {
   @Input() titleCarousel!: string;
-  @Input() dataCarousel!: any[];
+  @Input() dataCarousel!: DataMovie[];
 
   customOptions: OwlOptions = {
     loop: false,

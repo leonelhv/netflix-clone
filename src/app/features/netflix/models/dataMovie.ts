@@ -1,6 +1,6 @@
 export class DataMovie {
   backdrop_path!: string;
-  first_air_date!: Date;
+  first_air_date!: string;
   genre_ids!: number[];
   id!: number;
   title!: string;
@@ -12,10 +12,11 @@ export class DataMovie {
   poster_path!: string;
   vote_average!: number;
   vote_count!: number;
+  keyYT?: string;
 
   constructor(data: any) {
     this.backdrop_path = data.backdrop_path;
-    this.first_air_date = data.first_air_date;
+    this.first_air_date = data.first_air_date || data.release_date;
     this.genre_ids = data.genre_ids;
     this.id = data.id;
     this.title = data.title || data.name;
@@ -27,5 +28,6 @@ export class DataMovie {
     this.poster_path = data.poster_path;
     this.vote_average = data.vote_average;
     this.vote_count = data.vote_count;
+    this.keyYT = data.keyYT || undefined;
   }
 }

@@ -2,16 +2,17 @@ import { Component } from '@angular/core';
 import { NetflixService } from '../../services/netflix.service';
 import { forkJoin } from 'rxjs';
 import { ItemResultOriginalNetflix } from '../../interfaces/netflixOriginal.interface';
+import { DataMovie } from '../../models/dataMovie';
 @Component({
   selector: 'app-group-carousel',
   templateUrl: './group-carousel.component.html',
   styleUrls: ['./group-carousel.component.css'],
 })
 export class GroupCarouselComponent {
-  netflixOriginals: ItemResultOriginalNetflix[] = [];
-  trendingMovies: any[] = [];
-  topRatedMovies: any = [];
-  actionMovies: any = [];
+  netflixOriginals: DataMovie[] = [];
+  trendingMovies: DataMovie[] = [];
+  topRatedMovies: DataMovie[] = [];
+  actionMovies: DataMovie[] = [];
   constructor(private netflixService: NetflixService) {
     forkJoin([
       this.netflixService.getNetflixOriginals(),
