@@ -27,9 +27,11 @@
               >{{ item.title }}</span
             >
             <div class="flex items-center gap-4 text-sm">
-              <span class="font-semibold">{{
-                item.first_air_date && item.first_air_date.substring(0, 4)
-              }}</span>
+              <span class="font-semibold">
+                {{
+                  item.first_air_date && item.first_air_date.substring(0, 4)
+                }}</span
+              >
               <span
                 class="flex items-center justify-center gap-1 p-1 text-center border rounded-md bg-black/50"
                 ><span class="text-xs">{{ item.vote_average }}</span>
