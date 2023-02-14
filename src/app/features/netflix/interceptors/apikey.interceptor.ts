@@ -19,7 +19,7 @@ export class ApikeyInterceptor implements HttpInterceptor {
     const api_key = environment.API_MOVIEDB.api_key;
 
     const newRequest = request.clone({
-      setParams: { api_key },
+      setParams: { api_key, language: 'es-PE' },
     });
 
     return next.handle(newRequest);
