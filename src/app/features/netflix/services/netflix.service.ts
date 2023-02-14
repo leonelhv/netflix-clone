@@ -40,7 +40,7 @@ export class NetflixService {
   }
 
   getTopRatedMovies() {
-    const params = new HttpParams().set('language', 'en-US').set('page', 1);
+    const params = new HttpParams().set('page', 1);
     return this.http.get(`${this.BASE_URL}/movie/top_rated`, { params }).pipe(
       map((res: any) => {
         return res.results.map((item: any) => {
@@ -87,6 +87,6 @@ export class NetflixService {
   }
 
   getInfoMovie(id: number) {
-    return this.http.get(`${this.BASE_URL}/tv/${id}?language=en-US`);
+    return this.http.get(`${this.BASE_URL}/tv/${id}`);
   }
 }
