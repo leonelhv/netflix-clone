@@ -30,7 +30,6 @@ export class VideoHeroComponent implements OnInit {
     private overlayService: OverlayService
   ) {
     this.netflixService.getRandomMovieNetflixOriginal().subscribe((res) => {
-      console.log(res);
       this.movieNetflix = res;
     });
   }

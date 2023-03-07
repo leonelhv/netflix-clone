@@ -4,12 +4,12 @@
 @import "@angular/cdk/overlay-prebuilt.css";
 
 /* override styles carousel */
-custom-img .image {
-  object-fit: cover;
-}
 
+.owl-stage {
+  z-index: 10;
+}
 .owl-item:hover {
-  z-index: 999 !important;
+  z-index: 999;
   scale: 110%;
   transition: all 0.2s linear;
 }
@@ -21,6 +21,7 @@ custom-img .image {
   width: 100%;
   margin: 0 30px;
   max-width: 900px;
+  max-height: 400px;
   border-radius: 7px;
   overflow: hidden;
   min-height: min-content;

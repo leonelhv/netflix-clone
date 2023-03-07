@@ -13,13 +13,22 @@ export class ApikeyInterceptor implements HttpInterceptor {
   constructor() {}
 
   intercept(
-    request: HttpRequest<unknown>,
+    request: HttpRequest<any>,
     next: HttpHandler
-  ): Observable<HttpEvent<unknown>> {
+  ): Observable<HttpEvent<any>> {
     const api_key = environment.API_MOVIEDB.api_key;
+    let paramsObj: any = {};
+
+    for (const key of request.params.keys()) {
+      paramsObj[key] = request.params.get(key);
+    }
+
+    if (!paramsObj.hasOwnProperty('language')) {
+      paramsObj = { ...paramsObj, language: 'es-PE' };
+    }
 
     const newRequest = request.clone({
-      setParams: { api_key, language: 'es-PE' },
+      setParams: { ...paramsObj, api_key },
     });
 
     return next.handle(newRequest);

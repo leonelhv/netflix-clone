@@ -1,0 +1,16 @@
+<div class="bg-gris ">
+    <div
+      class="w-11/12 pt-20 mx-auto grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-4 pb-12"
+      infinite-scroll
+      [infiniteScrollDistance]="2"
+      [infiniteScrollThrottle]="50"
+      [scrollWindow]="true"
+      [fromRoot]="true"
+      (scrolled)="onScroll()"
+    >
+    <ng-container *ngFor="let serie of series">
+      <app-card [movie]="serie"></app-card>
+    </ng-container>
+    </div>
+  </div>
+  

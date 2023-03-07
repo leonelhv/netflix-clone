@@ -1,18 +1,23 @@
-<div class="flex text-white/60 bg-gris min-h-[400px]">
-  <div class="flex flex-col justify-center flex-1 gap-2 p-8">
-    <div class="flex flex-col gap-4">
-      <h2 class="text-3xl font-semibold text-white">{{ dataOverlay.title }}</h2>
-      <p class="flex gap-3 font-bold">
-        <span class="text-green-500"
-          >Rating: {{ dataOverlay.vote_average * 10 | number : "1.0-2" }}%</span
-        >
-        <span class="text-white"
-          >Primera fecha de emisión: {{ dataOverlay.first_air_date }}</span
-        >
-      </p>
-      <p>
-        {{ dataOverlay.overview }}
-      </p>
+<div class="flex text-white/60 bg-gris min-h-[400px] h-full">
+  <div class="flex flex-col justify-center flex-1 gap-2 p-8 overflow-hidden">
+    <div class="flex flex-col justify-between h-full gap-4">
+      <div class="flex flex-col gap-2">
+        <h2 class="text-3xl font-semibold text-white">
+          {{ dataOverlay.title }}
+        </h2>
+        <p class="flex gap-3 font-bold">
+          <span class="text-green-500"
+            >Rating:
+            {{ dataOverlay.vote_average * 10 | number : "1.0-2" }}%</span
+          >
+          <span class="text-white"
+            >Primera fecha de emisión: {{ dataOverlay.first_air_date }}</span
+          >
+        </p>
+        <p class="h-48 overflow-y-auto scrollbar-hide">
+          {{ dataOverlay.overview }}
+        </p>
+      </div>
       <div class="flex items-end gap-4">
         <button
           class="flex items-center gap-2 px-4 py-1 bg-red-500 border border-transparent rounded-md"
@@ -34,8 +39,10 @@
           </svg>
           PLAY
         </button>
-        <button
-          class="flex items-center gap-2 px-4 py-1 bg-transparent border border-white rounded-md"
+        <a
+          class="flex items-center gap-2 px-4 py-1 bg-transparent border border-white rounded-md hover:scale-105"
+          [routerLink]="['/details', dataOverlay.id]"
+          [queryParams]="{ type: dataOverlay.type }"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -53,16 +60,12 @@
             <line x1="12" y1="5" x2="12" y2="19" />
             <line x1="5" y1="12" x2="19" y2="12" />
           </svg>
-          MY LIST
-        </button>
+          Ver más detalles
+        </a>
       </div>
     </div>
   </div>
-  <div class="flex-1">
-    <img
-      [src]="'https://image.tmdb.org/t/p/w1280' + dataOverlay.backdrop_path"
-      alt="Image from {{ dataOverlay.title }}"
-      class="object-cover h-full"
-    />
+  <div class="flex-1 w-full h-full">
+    <img [src]="image" alt="" class="object-cover h-full" />
   </div>
 </div>

@@ -1,102 +1,106 @@
 <div
-  class="relative flex flex-col w-full h-64 overflow-hidden bg-black/60 sm:h-96 lg:min-h-screen bg-blend-multiply"
+  class="relative z-10 flex flex-col w-full h-64 overflow-hidden sm:h-96 lg:min-h-screen"
 >
-  <div
-    class="absolute top-0 left-0 h-full w-full -z-10 sm:pb-[56.27198%] overflow-hidden"
-  >
-    <ng-container *ngIf="endVideo | async; else video">
-      <img
-        class="absolute top-0 left-0 w-full h-full"
-        [src]="'https://image.tmdb.org/t/p/w1280' + movieNetflix.backdrop_path"
-        alt=""
-      />
-    </ng-container>
-    <ng-template #video>
-      <div #player id="player"></div>
-    </ng-template>
-  </div>
-  <div class="flex items-center flex-grow w-11/12 h-full mx-auto">
-    <div class="flex flex-col w-full gap-4 text-white" *ngIf="movieNetflix">
-      <div class="w-96">
-        <h2 class="text-4xl font-bold">{{ movieNetflix.title }}</h2>
-        <p class="line-clamp-4">
-          {{ movieNetflix.overview }}
-        </p>
-      </div>
-      <div class="flex justify-between">
-        <div class="flex gap-4">
-          <button
-            class="flex items-center gap-2 px-4 py-2 font-semibold text-black bg-white rounded-md hover:scale-105 hover:bg-white/75"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-player-play"
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#000000"
-              fill="#000"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M7 4v16l13 -8z" />
-            </svg>
-            Reproducir
-          </button>
-          <button
-            (click)="openModal(movieNetflix)"
-            class="px-4 py-2 font-semibold text-white rounded-md bg-white/50 hover:scale-105 hover:bg-white/10"
-          >
-            Más información
-          </button>
-        </div>
-        <ng-container *ngIf="!(endVideo | async)">
-          <ng-container *ngIf="isMuted; else muted">
-            <svg
-              (click)="toggleMute()"
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-volume"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#ffffff"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path d="M15 8a5 5 0 0 1 0 8" />
-              <path d="M17.7 5a9 9 0 0 1 0 14" />
-              <path
-                d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
-              />
-            </svg>
-          </ng-container>
-          <ng-template #muted>
-            <svg
-              (click)="toggleMute()"
-              xmlns="http://www.w3.org/2000/svg"
-              class="icon icon-tabler icon-tabler-volume-3"
-              width="44"
-              height="44"
-              viewBox="0 0 24 24"
-              stroke-width="1.5"
-              stroke="#ffffff"
-              fill="none"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            >
-              <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-              <path
-                d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
-              />
-              <path d="M16 10l4 4m0 -4l-4 4" />
-            </svg>
-          </ng-template>
+  <div class="w-full h-full bg-black/40">
+    <div
+      class="absolute top-0 left-0 h-full w-full -z-10 sm:pb-[56.27198%] overflow-hidden"
+    >
+      <div class="z-50 w-full h-full bg-black">
+        <ng-container *ngIf="endVideo | async; else video">
+          <img
+            class="absolute top-0 left-0 w-full h-full"
+            [src]="movieNetflix.backdrop_path | urlImgTMDB"
+            alt=""
+          />
         </ng-container>
+        <ng-template #video>
+          <div #player id="player"></div>
+        </ng-template>
+      </div>
+    </div>
+    <div class="flex items-center flex-grow w-11/12 h-full mx-auto">
+      <div class="flex flex-col w-full gap-4 text-white" *ngIf="movieNetflix">
+        <div class="w-96">
+          <h2 class="text-4xl font-bold">{{ movieNetflix.title }}</h2>
+          <p class="line-clamp-4">
+            {{ movieNetflix.overview }}
+          </p>
+        </div>
+        <div class="flex justify-between">
+          <div class="flex gap-4">
+            <button
+              class="flex items-center gap-2 px-4 py-2 font-semibold text-black bg-white rounded-md"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-player-play"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#000000"
+                fill="#000"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M7 4v16l13 -8z" />
+              </svg>
+              Reproducir
+            </button>
+            <button
+              (click)="openModal(movieNetflix)"
+              class="px-4 py-2 font-semibold text-white rounded-md bg-white/50 hover:scale-105 hover:bg-white/10"
+            >
+              Más información
+            </button>
+          </div>
+          <ng-container *ngIf="!(endVideo | async)">
+            <ng-container *ngIf="isMuted; else muted">
+              <svg
+                (click)="toggleMute()"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-volume"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path d="M15 8a5 5 0 0 1 0 8" />
+                <path d="M17.7 5a9 9 0 0 1 0 14" />
+                <path
+                  d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
+                />
+              </svg>
+            </ng-container>
+            <ng-template #muted>
+              <svg
+                (click)="toggleMute()"
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-volume-3"
+                width="44"
+                height="44"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffffff"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M6 15h-2a1 1 0 0 1 -1 -1v-4a1 1 0 0 1 1 -1h2l3.5 -4.5a0.8 .8 0 0 1 1.5 .5v14a0.8 .8 0 0 1 -1.5 .5l-3.5 -4.5"
+                />
+                <path d="M16 10l4 4m0 -4l-4 4" />
+              </svg>
+            </ng-template>
+          </ng-container>
+        </div>
       </div>
     </div>
   </div>

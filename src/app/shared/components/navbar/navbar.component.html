@@ -1,27 +1,37 @@
-<div class="absolute top-0 left-0 z-50 w-full">
+<div
+  class="fixed top-0 left-0 z-50 w-full"
+  [ngClass]="{ 'bg-black': isScrolled }"
+>
   <div class="flex justify-between w-11/12 py-4 mx-auto">
     <div class="flex gap-12">
       <div>
-        <app-logo-netflix width="w-24"></app-logo-netflix>
+        <app-logo-netflix
+          width="w-24 cursor-pointer"
+          routerLink="/"
+        ></app-logo-netflix>
       </div>
       <ul class="flex gap-4 font-semibold text-white">
-        <li class="">Inicio</li>
-        <li class="">Películas</li>
-        <li class="">Series</li>
+        <li routerLink="/browse" class="cursor-pointer">Inicio</li>
+        <li routerLink="/movies" class="cursor-pointer">Películas</li>
+        <li routerLink="/series" class="cursor-pointer">Series</li>
       </ul>
     </div>
     <div>
-      <div class="relative flex">
+      <form #keywordForm="ngForm" class="relative flex" (submit)="onSubmit()">
         <input
           type="text"
           class="flex-1 w-full px-4 py-1 text-base text-white placeholder-gray-400 border bg-black/40 focus:outline-none rounded-l-md"
+          placeholder="Busca tu película"
+          [(ngModel)]="keyword"
+          name="keyword"
         />
-        <span
+        <button
+          type="submit"
           class="inline-flex items-center px-3 text-sm text-white rounded-r-lg shadow-sm bg-netflix/80"
         >
           Buscar
-        </span>
-      </div>
+        </button>
+      </form>
     </div>
   </div>
 </div>

@@ -1,0 +1,99 @@
+<div *ngIf="details" class="w-full h-full pb-6 overflow-hidden">
+  <div
+    class="bg-center bg-cover backdrop-blur-sm"
+    style="background-image: url('{{ details.backdrop_path | urlImgTMDB }}');"
+  >
+    <div class="w-full h-full bg-black/70">
+      <div class="flex w-11/12 gap-8 mx-auto pt-28">
+        <div class="w-2/5">
+          <img
+            [src]="details.poster_path | urlImgTMDB"
+            alt=""
+            class="object-cover pb-6 rounded-lg"
+          />
+        </div>
+        <div class="w-full text-white">
+          <div class="flex flex-col gap-3">
+            <h1 class="text-6xl font-bold">{{ details.title }}</h1>
+
+            <span class="flex items-center gap-1 text-center text-[#ffec00]">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="icon icon-tabler icon-tabler-star"
+                width="11"
+                height="11"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="#ffec00"
+                fill="#ffec00"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                <path
+                  d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"
+                /></svg
+              ><span class="text-xl">{{
+                details.vote_average | number : "1.1-1"
+              }}</span></span
+            >
+            <span>Primera salida al aire: {{ details.first_air_date }}</span>
+          </div>
+          <p class="my-6">{{ details.overview }}</p>
+          <div class="text-white" *ngIf="details.casts.length">
+            <h2 class="text-3xl font-bold">Cast</h2>
+            <div class="flex gap-4 my-6">
+              <ng-container *ngIf="details.casts">
+                <div
+                  *ngFor="let cast of details.casts"
+                  class="flex flex-col items-center justify-between"
+                >
+                  <ng-container *ngIf="cast.profile_path">
+                    <img
+                      [src]="cast.profile_path | urlImgTMDB : 'sm'"
+                      alt=""
+                      class="object-cover w-32 rounded-md h-36"
+                    />
+                    <h2 class="text-center">{{ cast.name }}</h2>
+                  </ng-container>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="existVideoTrailer()">
+    <div class="w-11/12 mx-auto my-12">
+      <h2 class="mb-6 text-2xl font-bold text-white uppercase">Videos</h2>
+      <div
+        class="grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-12 justify-center items-center"
+      >
+        <ng-container *ngFor="let video of details.videos">
+          <iframe
+            *ngIf="video.type === 'Trailer'"
+            width="100%"
+            height="100%"
+            [src]="
+              sanitizer.bypassSecurityTrustResourceUrl(
+                'https://www.youtube.com/embed/' + video.key + '?rel=0'
+              )
+            "
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            class="aspect-video"
+          ></iframe>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+  <div class="w-11/12 mx-auto my-12">
+    <app-carousel
+      [dataCarousel]="details.mediaSimilar"
+      titleCarousel="Similares"
+    ></app-carousel>
+  </div>
+</div>
